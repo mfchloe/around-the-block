@@ -1,87 +1,105 @@
 <template>
-    <v-container fluid class="d-flex">
-      <!-- Left side: HDB image -->
-      <v-col cols="12" md="6" class="hdb-image" style="background-image: url('/path-to-your-hdb-image.jpg'); background-size: cover;">
-      </v-col>
-  
-      <!-- Right side: Login Form -->
+  <v-container fluid class="fill-height">
+    <v-row no-gutters>
+      <!-- Left side: Full-Height Image -->
+      <v-col cols="12" md="6" class="hdb-image"></v-col>
+
+      <!-- Right side: Sign In Form -->
       <v-col cols="12" md="6" class="d-flex align-center justify-center">
-        <v-form @submit.prevent="handleLogin">
-          <v-card class="pa-4" outlined>
-            <v-card-title class="text-h5">Login</v-card-title>
-  
-            <v-text-field
-              v-model="email"
-              label="Email Address"
-              type="email"
-              outlined
-              required
-            />
-  
-            <v-text-field
-              v-model="password"
-              label="Password"
-              outlined
-              required
-              append-icon="mdi-eye"
-              :type="passwordVisible ? 'text' : 'password'"
-              @click:append="togglePasswordVisibility"
-            />
-  
-            <v-row>
-              <v-col cols="6">
-                <router-link to="/forgot-password" class="text-decoration-none">Forgot Password?</router-link>
-              </v-col>
-              <v-col cols="6" class="text-right">
-                <v-btn
-                  color="primary"
-                  class="rounded"
-                  block
-                  type="submit"
-                >
-                  Login
-                </v-btn>
-              </v-col>
-            </v-row>
-  
-            <v-divider class="my-3" />
-  
-            <v-row>
-              <v-col class="text-center">
-                <span>Don't have an account yet? <router-link to="/signup" class="text-decoration-none">Sign Up</router-link></span>
-              </v-col>
-            </v-row>
-          </v-card>
+        <v-form @submit.prevent="handleSubmit" class="form-container">
+          <h2 class="text-h5 font-weight-bold">Sign in</h2>
+
+          <v-text-field 
+            v-model="email" 
+            label="Email Address" 
+            type="email" 
+            required
+            variant="outlined"
+            density="comfortable"
+            class="custom-input"
+          />
+
+          <v-text-field
+            v-model="password"
+            label="Password"
+            :type="passwordVisible ? 'text' : 'password'"
+            append-inner-icon="mdi-eye"
+            @click:append-inner="togglePasswordVisibility"
+            required
+            variant="outlined"
+            density="comfortable"
+            class="custom-input"
+          />
+
+          <div class="forgot-password">
+            <router-link to="/forgot-password" class="text-decoration-none">Forgot password?</router-link>
+          </div>
+
+          <CustomButton :color="'primary'" :block="true" @click="handleSubmit">
+            Sign in
+          </CustomButton>
+
+          <div class="login-link">
+            <span>Don't have an account?
+              <router-link to="/signup" class="text-decoration-none">Create one</router-link>
+            </span>
+          </div>
         </v-form>
       </v-col>
-    </v-container>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        email: "",
-        password: "",
-        passwordVisible: false,
-      };
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+import CustomButton from "@/components/CustomButton.vue";
+
+export default {
+  components: { CustomButton },
+  data() {
+    return {
+      email: "",
+      password: "",
+      passwordVisible: false,
+    };
+  },
+  methods: {
+    handleSubmit() {
+      console.log("Sign In Submitted", this.email, this.password);
     },
-    methods: {
-      handleLogin() {
-        // Handle login submission
-        console.log("Login Submitted", this.email, this.password);
-      },
-      togglePasswordVisibility() {
-        this.passwordVisible = !this.passwordVisible;
-      },
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
     },
-  };
-  </script>
-  
-  <style scoped>
-  .hdb-image {
-    background-position: center;
-    height: 100vh;
-  }
-  </style>
-  
+  },
+};
+</script>
+
+<style scoped>
+.hdb-image {
+  background-image: url('/HDB.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.custom-input {
+  background-color: transparent !important; /* Remove grey background */
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.login-link {
+  margin-top: 16px;
+  text-align: left;
+}
+</style>
