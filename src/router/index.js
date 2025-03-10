@@ -5,6 +5,7 @@ import SkillPostingView from "@/views/SkillPostingView.vue";
 import InboxView from "@/views/InboxView.vue";
 import SignUp from "@/views/SignUp.vue";
 import SignIn from "@/views/SignIn.vue";
+import ProfileView from "@/views/ProfileView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },
@@ -17,6 +18,7 @@ const routes = [
   { path: "/inbox", name: "Inbox", component: InboxView },
   { path: "/signup", name: "SignUp", component: SignUp },
   { path: "/signin", name: "SignIn", component: SignIn },
+  { path: "/profile", name: "Profile", component: ProfileView}
 ];
 
 const router = createRouter({

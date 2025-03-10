@@ -16,6 +16,7 @@
         <router-link to="/inbox" class="btn">Inbox</router-link>
         <router-link to="/signup" class="btn">Sign Up</router-link>
         <router-link to="/login" class="btn">Login</router-link>
+        <router-link to="/profile" class="btn">Profile</router-link>
       </div>
     </div>
   </div>
