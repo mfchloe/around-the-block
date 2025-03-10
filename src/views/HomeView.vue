@@ -14,6 +14,8 @@
         <router-link to="/skills-sharing" class="btn">Skill Sharing</router-link>
         <router-link to="/skill-posting" class="btn">Post a Skill</router-link>
         <router-link to="/inbox" class="btn">Inbox</router-link>
+        <router-link to="/signup" class="btn">Sign Up</router-link>
+        <router-link to="/login" class="btn">Login</router-link>
       </div>
     </div>
   </div>
